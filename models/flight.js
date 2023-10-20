@@ -2,7 +2,7 @@ const mongoose =require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const movieSchema = new Schema({
+const flightschema = new Schema({
     airline: String,
     airport: String,
     flightNo: Number,
@@ -11,4 +11,4 @@ const movieSchema = new Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Flight', movieSchema);
+module.exports = mongoose.model('Flight', flightschema);

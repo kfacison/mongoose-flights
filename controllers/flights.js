@@ -1,24 +1,21 @@
 const Flight = require('../models/flight');
 
 module.exports = {
-    new: newMovie,
+    new: newFlight,
     create,
     index
 };
 
-function newMovie(req, res){
-    res.render('flights/new.ejs', { errorMsg: '' })
+function newFlight(req, res){
+    res.render('flights/new', { errorMsg: '' })
 }
 
 async function create(req, res){
-    req.body.nowShowing = !!req.body.nowShowing;
-    req.body.cast = req.body.cast.trim();
-    if (req.body.cast) {
-        req.body.cast = req.body.cast.split(/\s*,\s*/);
-    }
+    console.log(req.body.depart)
+    
     try {
         await Flight.create(req.body);
-        res.redirect('/flights/index.ejs');
+        res.redirect('/flights/index');
     } catch (err) {
         console.log(err);
         res.render('flights/new', { errorMsg: err.message });
@@ -27,5 +24,5 @@ async function create(req, res){
 
 async function index(req, res) {
     const flights = await Flight.find({});
-    res.render('flights/index.ejs', { flights });
+    res.render('flights/index', { flights });
 }
