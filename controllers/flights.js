@@ -1,4 +1,4 @@
-const Movie = require('../models/movie');
+const Flight = require('../models/flight');
 
 module.exports = {
     new: newMovie,
@@ -7,7 +7,7 @@ module.exports = {
 };
 
 function newMovie(req, res){
-    res.render('movies/new.ejs', { errorMsg: '' })
+    res.render('flights/new.ejs', { errorMsg: '' })
 }
 
 async function create(req, res){
@@ -17,15 +17,15 @@ async function create(req, res){
         req.body.cast = req.body.cast.split(/\s*,\s*/);
     }
     try {
-        await Movie.create(req.body);
-        res.redirect('/movies/index.ejs');
+        await Flight.create(req.body);
+        res.redirect('/flights/index.ejs');
     } catch (err) {
         console.log(err);
-        res.render('movies/new', { errorMsg: err.message });
+        res.render('flights/new', { errorMsg: err.message });
     }
 }
 
 async function index(req, res) {
-    const movies = await Movie.find({});
-    res.render('movies/index.ejs', { movies });
+    const flights = await Flight.find({});
+    res.render('flights/index.ejs', { flights });
 }

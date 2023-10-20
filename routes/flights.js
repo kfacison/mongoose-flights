@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-const moviesCtrl = require('../controllers/movies');
+const moviesCtrl = require('../controllers/flights');
 
-//ALL ROUTES START WITH /movies
+//ALL ROUTES START WITH /flights
 
-//GET /movies/new
+//GET /flights/new
 router.get('/new', moviesCtrl.new);
 router.get('/index', moviesCtrl.index);
 
-//POST /movies
+//POST /flights
 router.post('/', moviesCtrl.create);
 
 
