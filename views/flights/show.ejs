@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+<h2>Flight Details</h2>
+<table>
+<thead>
+    <tr>
+    <th>Airline</th>
+    <th>Flight Number</th>
+    <th>Depart Info</th>
+    <th>Arrival Info</th>
+</tr>
+</thead>
+<tbody>
+    <tr>
+        <td><%= flight.airline %></td>
+        <td><%= flight.flightNo %></td>
+        <td><%= flight.airport %> - <%= flight.departs %></td>
+        
+        <% if(flight.destinations.arrival){ %>
+        <td><%= flight.destinations.airport %> - <%= flight.destinations.arrival %></td>
+        <% } else { %>
+        <td> NA - NA
+        </td>
+        <% } %>
+    </tr>
+</tbody>
+</table>
+<br>
+<form id="arrivalForm" action="/flighs/<%= flight._id %>/destinations" method="POST">
+    <label>Arrival Airport</label>
+    <select name="arrival">
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="DEN">DEN</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+    </select>
+    <br>
+    <label>Arrival Time</label>
+    <input type="datetime-local" name="departs">
+    <br>
+    <input type="submit" value="Add Arrival Info">
+</form>
+
+<%- include('../partials/footer') %>
