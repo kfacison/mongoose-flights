@@ -14,21 +14,24 @@
     <tr>
         <td><%= flight.airline %></td>
         <td><%= flight.flightNo %></td>
-        <td><%= flight.airport %> - <%= flight.departs %></td>
+        <td><%= flight.airport %> <strong>-</strong> <%= flight.departs %></td>
         
-        <% if(flight.destinations.arrival){ %>
-        <td><%= flight.destinations.airport %> - <%= flight.destinations.arrival %></td>
-        <% } else { %>
-        <td> NA - NA
+        <% if(flight.destinations){ %>
+        <td>
+            <% flight.destinations.forEach(arrivalPoint => { %>
+                <%= arrivalPoint.airport %> <strong>-</strong> <%= arrivalPoint.arrival %><br>
+            <% }); %>
         </td>
+        <% } else { %>
+        <td> NA - NA</td>
         <% } %>
     </tr>
 </tbody>
 </table>
 <br>
-<form id="arrivalForm" action="/flighs/<%= flight._id %>/destinations" method="POST">
+<form id="arrivalForm" action="/flights/<%= flight._id %>/destinations" method="POST">
     <label>Arrival Airport</label>
-    <select name="arrival">
+    <select name="airport">
         <option value="AUS">AUS</option>
         <option value="DFW">DFW</option>
         <option value="DEN">DEN</option>
@@ -37,7 +40,7 @@
     </select>
     <br>
     <label>Arrival Time</label>
-    <input type="datetime-local" name="departs">
+    <input type="datetime-local" name="arrival">
     <br>
     <input type="submit" value="Add Arrival Info">
 </form>

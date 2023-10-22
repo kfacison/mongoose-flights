@@ -6,7 +6,6 @@ module.exports = {
 
 async function create(req, res){
     const flight = await Flight.findById(req.params.id);
-    console.log("in destination controlorer create")
     flight.destinations.push(req.body);
     try {
         await flight.save();

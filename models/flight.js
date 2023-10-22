@@ -6,12 +6,9 @@ const destinationSchema = new Schema({
     airport: {
         type: String,
         default: 'DFW',
-        enum: ['AUS', 'DFW','DEN','LAX','SAN']
+        enum: ['AUS','DFW','DEN','LAX','SAN']
         },
-    arrival: {
-        type: Date,
-        default: '2024-10-31T11:00'
-    },
+    arrival: Date,
 }, {
     timestamps: true
 });
@@ -24,7 +21,7 @@ const flightschema = new Schema({
     airport: {
         type: String,
         default: 'DFW',
-        enum: ['AUS', 'DFW','DEN','LAX','SAN']
+        enum: ['AUS','DFW','DEN','LAX','SAN']
         },
     flightNo: {
         type: Number,
@@ -32,10 +29,7 @@ const flightschema = new Schema({
         min: 10,
         max: 9999
     },
-    departs: {
-        type: Date,
-        default: '2024-10-31T11:00'
-    },
+    departs: Date,
     destinations: [destinationSchema]
 }, {
     timestamps: true
