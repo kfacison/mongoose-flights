@@ -44,5 +44,30 @@
     <br>
     <input type="submit" value="Add Arrival Info">
 </form>
+<table>
+<thead>
+    <tr>
+        <th>Seat Number</th>
+        <th>Price</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <% if(tickets.length){ %>
+            <% tickets.forEach(tic => { %>
+                <td><% tic.seat %></td>
+                <td><% tic.price %></td> 
+            <% }); %>
+        </tr>
+        <% } else { %>
+            <td>NA</td>
+            <td>NA</td>
+        </tr>
+            <% } %>
+</tbody>
+</table>
+<form action="/flights/<%= flight._id %>/tickets/new" method="GET">
+    <input type="submit" value="Add Tickets">
+</form>
 
 <%- include('../partials/footer') %>
