@@ -52,14 +52,15 @@
     </tr>
 </thead>
 <tbody>
-    <tr>
-        <% if(tickets.length){ %>
-            <% tickets.forEach(tic => { %>
-                <td><% tic.seat %></td>
-                <td><% tic.price %></td> 
+    <% if(tickets.length){ %>
+        <% tickets.forEach(tic => { %>
+            <tr>
+                <td><%= tic.seat %></td>
+                <td><%= tic.price %></td> 
+            </tr>
             <% }); %>
-        </tr>
         <% } else { %>
+        <tr>
             <td>NA</td>
             <td>NA</td>
         </tr>
